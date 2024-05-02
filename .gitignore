@@ -133,5 +133,4 @@ dist
 .DS_Store
 
 build
-.svelte-kit
 .netlify
