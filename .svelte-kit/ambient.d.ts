@@ -26,6 +26,13 @@
  * ```
  */
 declare module '$env/static/private' {
+	export const VITE_FIREBASE_API_KEY: string;
+	export const VITE_FIREBASE_APP_ID: string;
+	export const VITE_FIREBASE_USE_EMULATOR: string;
+	export const VITE_FIREBASE_AUTH_DOMAIN: string;
+	export const VITE_FIREBASE_DATABASE_URL: string;
+	export const VITE_FIREBASE_PROJECT_ID: string;
+	export const VITE_FIREBASE_STORAGE_URL: string;
 	export const NVM_INC: string;
 	export const MANPATH: string;
 	export const TERM_PROGRAM: string;
@@ -41,9 +48,7 @@ declare module '$env/static/private' {
 	export const ZDOTDIR: string;
 	export const ORIGINAL_XDG_CURRENT_DESKTOP: string;
 	export const MallocNanoZone: string;
-	export const npm_package_optional: string;
 	export const COLOR: string;
-	export const TERM_SESSION_ID: string;
 	export const npm_config_noproxy: string;
 	export const npm_config_local_prefix: string;
 	export const ZSH: string;
@@ -52,12 +57,10 @@ declare module '$env/static/private' {
 	export const LS_COLORS: string;
 	export const COMMAND_MODE: string;
 	export const npm_config_globalconfig: string;
-	export const npm_package_peer: string;
 	export const SSH_AUTH_SOCK: string;
 	export const __CF_USER_TEXT_ENCODING: string;
 	export const npm_execpath: string;
 	export const PAGER: string;
-	export const npm_package_integrity: string;
 	export const LSCOLORS: string;
 	export const PATH: string;
 	export const npm_package_json: string;
@@ -68,31 +71,24 @@ declare module '$env/static/private' {
 	export const __CFBundleIdentifier: string;
 	export const npm_command: string;
 	export const PWD: string;
+	export const JAVA_HOME: string;
 	export const npm_lifecycle_event: string;
 	export const EDITOR: string;
 	export const npm_package_name: string;
 	export const LANG: string;
-	export const ITERM_PROFILE: string;
 	export const npm_config_npm_version: string;
 	export const VSCODE_GIT_ASKPASS_EXTRA_ARGS: string;
 	export const XPC_FLAGS: string;
-	export const npm_package_engines_node: string;
 	export const npm_config_node_gyp: string;
-	export const npm_package_dev: string;
 	export const npm_package_version: string;
 	export const XPC_SERVICE_NAME: string;
 	export const VSCODE_INJECTION: string;
 	export const YSU_VERSION: string;
-	export const npm_package_resolved: string;
-	export const COLORFGBG: string;
-	export const SHLVL: string;
 	export const MANPAGER: string;
+	export const SHLVL: string;
 	export const HOME: string;
 	export const VSCODE_GIT_ASKPASS_MAIN: string;
-	export const LC_TERMINAL_VERSION: string;
 	export const HOMEBREW_PREFIX: string;
-	export const npm_package_dev_optional: string;
-	export const ITERM_SESSION_ID: string;
 	export const npm_config_cache: string;
 	export const LESS: string;
 	export const LOGNAME: string;
@@ -102,12 +98,13 @@ declare module '$env/static/private' {
 	export const npm_config_user_agent: string;
 	export const VSCODE_GIT_ASKPASS_NODE: string;
 	export const GIT_ASKPASS: string;
-	export const HOMEBREW_CELLAR: string;
 	export const INFOPATH: string;
-	export const LC_TERMINAL: string;
+	export const HOMEBREW_CELLAR: string;
 	export const npm_node_execpath: string;
 	export const npm_config_prefix: string;
 	export const COLORTERM: string;
+	export const NODE_ENV: string;
+	export const NINJA_WELCOME_SHOWN: string;
 }
 
 /**
@@ -139,6 +136,13 @@ declare module '$env/static/public' {
  */
 declare module '$env/dynamic/private' {
 	export const env: {
+		VITE_FIREBASE_API_KEY: string;
+		VITE_FIREBASE_APP_ID: string;
+		VITE_FIREBASE_USE_EMULATOR: string;
+		VITE_FIREBASE_AUTH_DOMAIN: string;
+		VITE_FIREBASE_DATABASE_URL: string;
+		VITE_FIREBASE_PROJECT_ID: string;
+		VITE_FIREBASE_STORAGE_URL: string;
 		NVM_INC: string;
 		MANPATH: string;
 		TERM_PROGRAM: string;
@@ -154,9 +158,7 @@ declare module '$env/dynamic/private' {
 		ZDOTDIR: string;
 		ORIGINAL_XDG_CURRENT_DESKTOP: string;
 		MallocNanoZone: string;
-		npm_package_optional: string;
 		COLOR: string;
-		TERM_SESSION_ID: string;
 		npm_config_noproxy: string;
 		npm_config_local_prefix: string;
 		ZSH: string;
@@ -165,12 +167,10 @@ declare module '$env/dynamic/private' {
 		LS_COLORS: string;
 		COMMAND_MODE: string;
 		npm_config_globalconfig: string;
-		npm_package_peer: string;
 		SSH_AUTH_SOCK: string;
 		__CF_USER_TEXT_ENCODING: string;
 		npm_execpath: string;
 		PAGER: string;
-		npm_package_integrity: string;
 		LSCOLORS: string;
 		PATH: string;
 		npm_package_json: string;
@@ -181,31 +181,24 @@ declare module '$env/dynamic/private' {
 		__CFBundleIdentifier: string;
 		npm_command: string;
 		PWD: string;
+		JAVA_HOME: string;
 		npm_lifecycle_event: string;
 		EDITOR: string;
 		npm_package_name: string;
 		LANG: string;
-		ITERM_PROFILE: string;
 		npm_config_npm_version: string;
 		VSCODE_GIT_ASKPASS_EXTRA_ARGS: string;
 		XPC_FLAGS: string;
-		npm_package_engines_node: string;
 		npm_config_node_gyp: string;
-		npm_package_dev: string;
 		npm_package_version: string;
 		XPC_SERVICE_NAME: string;
 		VSCODE_INJECTION: string;
 		YSU_VERSION: string;
-		npm_package_resolved: string;
-		COLORFGBG: string;
-		SHLVL: string;
 		MANPAGER: string;
+		SHLVL: string;
 		HOME: string;
 		VSCODE_GIT_ASKPASS_MAIN: string;
-		LC_TERMINAL_VERSION: string;
 		HOMEBREW_PREFIX: string;
-		npm_package_dev_optional: string;
-		ITERM_SESSION_ID: string;
 		npm_config_cache: string;
 		LESS: string;
 		LOGNAME: string;
@@ -215,12 +208,13 @@ declare module '$env/dynamic/private' {
 		npm_config_user_agent: string;
 		VSCODE_GIT_ASKPASS_NODE: string;
 		GIT_ASKPASS: string;
-		HOMEBREW_CELLAR: string;
 		INFOPATH: string;
-		LC_TERMINAL: string;
+		HOMEBREW_CELLAR: string;
 		npm_node_execpath: string;
 		npm_config_prefix: string;
 		COLORTERM: string;
+		NODE_ENV: string;
+		NINJA_WELCOME_SHOWN: string;
 		[key: `PUBLIC_${string}`]: undefined;
 		[key: `${string}`]: string | undefined;
 	}
