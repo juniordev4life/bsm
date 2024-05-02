@@ -4,6 +4,8 @@
  import { goto } from '$app/navigation';
  import { signOut } from 'firebase/auth';
  import { auth } from '$lib/firebase.client';
+ import Sidebar from '../components/Sidebar.svelte'
+ import "../app.css";
 
  import type { LayoutData } from './$types';
  export let data: LayoutData;
@@ -19,7 +21,7 @@
  onMount(async () => {
   const user: any = await data.getAuthUser();
 
-  const loggedIn = !!user && user?.emailVerified;
+  const loggedIn = !!user;
   session.update((cur: any) => {
    loading = false;
    return {
@@ -30,7 +32,7 @@
    };
   });
 
-  if (loggedIn) {
+  if (!loggedIn) {
    goto('/');
   }
  });
@@ -40,8 +42,13 @@
 {#if loading}
  <div>Loading...</div>
 {:else}
-  <div>
-   Logged in: {loggedIn}
+<div class="flex">
+  {#if loggedIn}
+    <Sidebar />
+  {/if}
+  <div class="container mx-auto">
    <slot />
   </div>
+</div>
+  
 {/if}

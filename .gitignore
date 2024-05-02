@@ -131,3 +131,7 @@ dist
 
 #Mac OS X
 .DS_Store
+
+build
+.svelte-kit
+.netlify
