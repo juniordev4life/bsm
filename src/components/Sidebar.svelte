@@ -92,7 +92,6 @@
           </li>
         </ul>
         <div class="flex flex-wrap items-center cursor-pointer border border-gray-500 rounded-full px-2 py-1">
-          <img src='https://ui-avatars.com/api/?name={userName}' class="w-9 h-9 rounded-full border-2 border-white" />
           <div class="ml-4">
             <p class="text-sm text-white">{userName}</p>
           </div>
