@@ -1,3 +1,27 @@
+<script lang="ts">
+  import { onAuthStateChanged, getAuth, signOut } from "firebase/auth";
+
+  let userName = '';
+  const auth = getAuth();
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      console.log(user)
+      userName = user?.email || '';
+    } else {
+      window.location.href = '/';
+    }
+  })
+
+  function logout() {
+    signOut(auth).then(() => {
+      window.location.href = '/';
+    }).catch((error) => {
+      console.log('Logout problem: ' + error)
+    });
+  }
+</script>
+
 <nav class="bg-[#121e31] h-screen top-0 left-0 w-[250px] py-6 px-4 font-[sans-serif] overflow-auto">
       <div class="relative flex flex-col h-full">
         <ul class="space-y-3 my-10 flex-1">
@@ -51,7 +75,7 @@
             </a>
           </li>
           <li>
-            <a href="javascript:void(0)" class="text-white text-sm flex items-center hover:bg-gray-700 rounded px-4 py-3 transition-all">
+            <button  on:click="{logout}" class="text-white text-sm flex items-center hover:bg-gray-700 rounded px-4 py-3 transition-all">
               <svg fill="currentColor" class="w-[18px] h-[18px] mr-4"
                 viewBox="0 0 512 512">
                 <g id="Sign_Out">
@@ -64,13 +88,12 @@
                 </g>
               </svg>
               <span>Logout</span>
-            </a>
+            </button>
           </li>
         </ul>
         <div class="flex flex-wrap items-center cursor-pointer border border-gray-500 rounded-full px-2 py-1">
-          <img src='https://ui-avatars.com/api/?name=Marco+Slusalek' class="w-9 h-9 rounded-full border-2 border-white" />
           <div class="ml-4">
-            <p class="text-sm text-white">Marco Slusalek</p>
+            <p class="text-sm text-white">{userName}</p>
           </div>
         </div>
       </div>
