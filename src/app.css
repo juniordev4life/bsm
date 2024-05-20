@@ -5,3 +5,13 @@
 .sg-task {
   cursor: pointer;
 }
+
+.sg-table {
+  position: fixed;
+  height: 800px;
+  z-index: 999999;
+}
+
+.sg-timeline {
+  margin-left: 250px !important;
+}

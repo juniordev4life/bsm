@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { SvelteGantt, SvelteGanttDependencies, SvelteGanttTable, MomentSvelteGanttDateAdapter } from 'svelte-gantt';
+    import { SvelteGantt, SvelteGanttTable, MomentSvelteGanttDateAdapter } from 'svelte-gantt';
     import { onMount } from 'svelte';
     import TaskPopover from '../../components/TaskPopover.svelte';
     import { time, date } from '../../utils'
@@ -109,8 +109,8 @@
         return 0;
     }
 
-    let fromDate = '2024-06-01';
-    let toDate = '2024-07-01';
+    let fromDate = moment().format('YYYY-MM-DD');
+    let toDate = moment().add(28, 'days').format('YYYY-MM-DD');
 
     let currentStart = date(fromDate);
     let currentEnd = date(toDate);
@@ -218,7 +218,6 @@
         tableHeaders: [{ title: 'Seats', property: 'label', width: 140}],
         tableWidth: 250,
         ganttTableModules: [SvelteGanttTable],
-        ganttBodyModules: [SvelteGanttDependencies],
         taskElementHook: (node, task) => {
             let popup;
             function onHover(event) {
@@ -311,7 +310,7 @@
                 <input type="date" id="from" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="Von" bind:value={fromDate} on:change={setCalendarDate} />
             </div>
             <div>
-                <label for="to" class="block mb-2 text-sm font-medium text-gray-900">Von</label>
+                <label for="to" class="block mb-2 text-sm font-medium text-gray-900">Bis</label>
                 <input type="date" id="to" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="Bis" bind:value={toDate} on:change={setCalendarDate}/>
             </div>
         </div>
@@ -325,7 +324,7 @@
     #example-gantt-events {
         flex-grow: 1;
         overflow: auto;
-        max-height: 80vh;
+        max-height: 800px;
     }
 
     .container {
