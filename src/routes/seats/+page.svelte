@@ -20,7 +20,6 @@
     onValue(starCountRef, (snapshot) => {
       const seatData = snapshot.val();
       $seats = Object.values(seatData);
-      // console.log($seats)
     });
   }
 
@@ -58,8 +57,6 @@
 
   onMount(() => {
 		getDatabaseData();
-    // $seats.sort(sortByEndDate);
-    // console.log($seats)
 	});
 </script>
 

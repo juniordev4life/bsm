@@ -8,7 +8,7 @@ export type Seat = {
   note: string;
   productionDate: string;
   rentstart: string;
-  rentend: string;
+  rentend?: string;
   serialNumber: string;
   type: string;
   updated: string;

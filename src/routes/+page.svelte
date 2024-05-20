@@ -3,8 +3,6 @@
  import { session } from '../lib/session';
  import { auth } from '../lib/firebase.client';
  import {
-  GoogleAuthProvider,
-  signInWithPopup,
   signInWithEmailAndPassword,
   type UserCredential
  } from 'firebase/auth';
@@ -16,7 +14,6 @@
  async function loginWithMail() {
   await signInWithEmailAndPassword(auth, email, password)
    .then((result) => {
-    console.log(result)
     const { user }: UserCredential = result;
     session.set({
      loggedIn: true,
