@@ -93,7 +93,6 @@
   }
 
   function handleEditItem(event: any) {
-    console.log(event.detail.item)
     pickedRent = event.detail.item;
     modalTitle = 'Miete bearbeiten'
     showModal = true;
