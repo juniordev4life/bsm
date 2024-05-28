@@ -4,7 +4,11 @@
       "port": 9099
     },
     "database": {
-      "port": 9000
+      "port": 9000,
+      "rules": {
+        ".read": "auth != null",
+        ".write": "auth != null"
+      }
     },
     "firestore": {
       "port": 9090

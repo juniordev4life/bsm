@@ -15,30 +15,30 @@
 
   let sortProperty = 'endDate';
   let pickedRent: Rent = {
-  created: '',
-  email: '',
-  endDate: '',
-  index: '',
-  name: '',
-  note: '',
-  phone: '',
-  shipping: false,
-  startDate: '',
-  updated: '',
-  seatName: '',
-  part: {
-    color: '',
     created: '',
+    email: '',
+    endDate: '',
     index: '',
     name: '',
     note: '',
-    productionDate: '',
-    rentstart: '',
-    serialNumber: '',
-    type: '',
+    phone: '',
+    shipping: false,
+    startDate: '',
     updated: '',
+    seatName: '',
+    part: {
+      color: '',
+      created: '',
+      index: '',
+      name: '',
+      note: '',
+      productionDate: '',
+      rentstart: '',
+      serialNumber: '',
+      type: '',
+      updated: '',
+    }
   }
-}
 
   let hasRents: boolean = false;
   let coloumns: string[] = ['Sitz', 'Mieter', 'Email', 'Startdatum', 'Enddatum']
@@ -118,6 +118,9 @@
           showConfirmButton: false,
           timer: 2000,
         })
+        setInterval(() => {
+          location.reload()
+        }, 2000)
       }
       else if (result.isDenied) {
         Swal.fire({
@@ -154,6 +157,9 @@
         showConfirmButton: false,
         timer: 2000,
       })
+      setInterval(() => {
+        location.reload()
+      }, 2000)
     })
     .catch((error) => {
       Swal.fire({
