@@ -11,6 +11,12 @@
     import Modal from '../../components/Modal.svelte';
     import FormRent from '../../components/FormRent.svelte'
     import Swal from 'sweetalert2'
+    import Flatpickr from 'svelte-flatpickr';
+    import 'flatpickr/dist/flatpickr.css';
+    import { German } from "flatpickr/dist/l10n/de.js"
+    import flatpickr from "flatpickr";
+
+    const myFlatpickr = flatpickr.localize(German);
 
     let rows = [];
     let tasks = [];
@@ -47,6 +53,16 @@
             updated: '',
         }
     }
+
+    const optionsFlatpickr = {
+        mode: "range",
+        minDate: "today",
+        altInput: true,
+        altFormat: "d.m.Y",
+        dateFormat: "Y-m-d",
+        enableTime: false,
+        weekNumbers: true
+    };
 
     function getDatabaseRentData() {
         const rentRef = ref(db, 'rent-baby-seat');
@@ -248,9 +264,10 @@
         getDatabaseRentData();
     });
 
-    function setCalendarDate() {
-        options.from = date(fromDate);
-        options.to = date(toDate);
+    function setCalendarDate(event) {
+        const [ selectedDates, dateStr ] = event.detail;
+        options.from = date(selectedDates[0]);
+        options.to = date(selectedDates[1]);
         const daysBetweeen = moment(options.to).diff(moment(options.from), 'days');
         options.minWidth = (daysBetweeen * 90);
         gantt.$set(options);
@@ -293,6 +310,8 @@
         showModal = true;
     }
 
+    let timeRange = [fromDate, toDate];
+
 </script>
 
 <Modal bind:showModal>
@@ -304,8 +323,10 @@
 </Modal>
 <div class="container">
     <div class="flex flex-col gap-4 mt-8">
-        <div class="flex gap-4">
-            <div>
+        <div class="flex gap-2 items-center">
+            <label>Zeitraum: </label>
+            <Flatpickr flatpickr={myFlatpickr} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-2.5 w-52 h-12 cursor-pointer" options={optionsFlatpickr} bind:value={timeRange} on:close={setCalendarDate} name="date" />
+            <!-- <div>
                 <label for="from" class="block mb-2 text-sm font-medium text-gray-900">Von</label>
                 <input type="date" id="from" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="Von" bind:value={fromDate} on:change={setCalendarDate} />
             </div>
@@ -313,6 +334,7 @@
                 <label for="to" class="block mb-2 text-sm font-medium text-gray-900">Bis</label>
                 <input type="date" id="to" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="Bis" bind:value={toDate} on:change={setCalendarDate}/>
             </div>
+        -->
         </div>
         <hr />
         <div id="example-gantt-events"></div>

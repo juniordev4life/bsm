@@ -9,7 +9,7 @@
 .sg-table {
   position: fixed;
   height: 800px;
-  z-index: 999999;
+  z-index: 900;
 }
 
 .sg-timeline {

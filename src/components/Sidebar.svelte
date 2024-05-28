@@ -99,8 +99,8 @@
           </li>
         </ul>
         <div class="flex flex-wrap items-center cursor-pointer border border-gray-500 rounded-full px-2 py-1">
-          <div class="ml-4">
-            <p class="text-sm text-white">{userName}</p>
+          <div class="ml-4 text-ellipsis overflow-hidden">
+            <p title="{userName}" class="truncate text-sm text-white">{userName}</p>
           </div>
         </div>
       </div>
