@@ -32,8 +32,8 @@
 </script>
 
 <div class="overflow-x-auto">
-  <table class="min-w-full bg-white font-[sans-serif]">
-    <thead class="bg-gray-800 whitespace-nowrap">
+  <table class="min-w-full bg-white font-[sans-serif] mt-4">
+    <thead class="bg-[#e93997] whitespace-nowrap">
       <tr>
       {#each columns as column}
         <th class="px-6 py-3 text-left text-sm font-semibold text-white">

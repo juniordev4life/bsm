@@ -1,4 +1,5 @@
 <script lang="ts">
+  import {showToDate} from '../utils';
   export let task: { label: string; from: Moment; to: Moment };
   export let coordinates: { x: number; y: number };
   export let isVisible: boolean;
@@ -13,7 +14,7 @@
     </div>
     <div class="sg-popup-item">
         <div class="sg-popup-item-label">Bis:</div>
-        <div class="sg-popup-item-value">{task.to.format('dddd DD.MM.YYYY')}</div>
+        <div class="sg-popup-item-value">{showToDate(task.to)}</div>
     </div>
   </div>
 {/if}

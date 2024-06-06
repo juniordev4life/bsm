@@ -34,7 +34,7 @@
 </script>
 
 {#if hasSeats}
-<div class="w-full">
+<div class="w-[300px] mt-4">
   <div class="flex flex-col mb-4">
     <label for="serialnumber" class="mb-1">Seriennummer</label>
     <input id="serialnumber" bind:value="{seatObject.serialNumber}" type="text" aria-label="Seriennummer" />
@@ -51,7 +51,7 @@
     <label for="color">Farbe</label>
     <input id="color" bind:value="{seatObject.color}" type="text" aria-label="Farbe" />
   </div>
-  <div class="flex flex-col">
+  <div class="flex flex-col mb-4">
     <label for="note">Bemerkung</label>
     <textarea id="note" bind:value="{seatObject.note}" aria-label="Bemerkung" />
   </div>
@@ -72,7 +72,7 @@
 {/if}
 
 <style>
-  input {
+  input, textarea {
     @apply bg-white border-2 border-gray-400 px-2 py-1 rounded
   }
 </style>

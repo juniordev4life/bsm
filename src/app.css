@@ -4,14 +4,13 @@
 
 .sg-task {
   cursor: pointer;
+  border: 1px solid #ffffff;
 }
 
-.sg-table {
-  position: fixed;
-  height: 800px;
-  z-index: 900;
+.sg-task.pink {
+    background-color: #e93997;
 }
 
-.sg-timeline {
-  margin-left: 250px !important;
+.sg-task.pink:hover {
+    background-color: #982a73;
 }
