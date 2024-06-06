@@ -223,7 +223,7 @@
         fitWidth: false,
         minWidth: 2000, // calculate minWidth by 90px x days
         from: currentStart,
-        to: currentEnd,
+        to: currentEnd.add(1, 'days'),
         tableHeaders: [{ title: 'Seats', property: 'label', width: 140}],
         tableWidth: 250,
         ganttTableModules: [SvelteGanttTable],
@@ -260,7 +260,7 @@
     function setCalendarDate(event) {
         const [ selectedDates, dateStr ] = event.detail;
         options.from = date(selectedDates[0]);
-        options.to = date(selectedDates[1]);
+        options.to = date(selectedDates[1]).add(1, 'days');
         const daysBetweeen = moment(options.to).diff(moment(options.from), 'days');
         options.minWidth = (daysBetweeen * 90);
         gantt.$set(options);

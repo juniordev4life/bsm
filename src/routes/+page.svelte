@@ -38,7 +38,7 @@
       <div class="border border-gray-300 rounded-md p-6 max-w-md shadow-[0_2px_22px_-4px_rgba(93,96,127,0.2)] max-md:mx-auto">
         <form on:submit={loginWithMail} class="space-y-6">
           <div class="mb-10">
-            <h3 class="text-3xl font-extrabold">Log in</h3>
+            <h3 class="text-3xl font-extrabold text-[#383084]">Log in</h3>
           </div>
           <div>
             <label class="text-sm mb-2 block">Email</label>
@@ -74,7 +74,7 @@
           </div>
           -->
           <div class="!mt-10">
-            <button type="submit" class="w-full shadow-xl py-2.5 px-4 text-sm font-semibold rounded text-white bg-[#333] hover:bg-black focus:outline-none">
+            <button type="submit" class="w-full shadow-xl py-2.5 px-4 text-sm font-semibold rounded text-white bg-[#383084] hover:bg-black focus:outline-none">
               Log in
             </button>
           </div>

@@ -4,8 +4,7 @@
 
 .sg-task {
   cursor: pointer;
-  border-right: 1px solid #ffffff;
-  border-left: 1px solid #ffffff;
+  border: 1px solid #ffffff;
 }
 
 .sg-task.pink {
