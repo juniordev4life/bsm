@@ -7,3 +7,7 @@ export function time(input: string) {
 export function date(input: string) {
     return moment(input, 'YYYY-MM-DD');
 }
+
+export function showToDate(input: string) {
+    return moment(input, 'YYYY-MM-DD').subtract(1, 'days').format('dddd DD.MM.YYYY');
+}

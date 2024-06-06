@@ -6,7 +6,7 @@
     import { db } from '../../lib/firebase.client';
     import { ref, set, onValue} from "firebase/database";
     import { rents, type Rent } from '$lib/rents';
-    import type { Seat } from '$lib/seats';
+    import { seats, type Seat } from '$lib/seats';
     import moment from 'moment';
     import Modal from '../../components/Modal.svelte';
     import FormRent from '../../components/FormRent.svelte'
@@ -70,8 +70,8 @@
             const rentData = snapshot.val();
             $rents = Object.values(rentData);
             $rents = $rents.map(rent => { rent.seatName = rent.part.name; return rent});
-            const distinctSeats = distinctPartsByPartIndex($rents);
-            distinctSeats.forEach(seat => {
+            $seats.sort(sortSeatsByName)
+            $seats.forEach(seat => {
                 rows.push({ id: seat.index, label: seat.name });
             });
             $rents.forEach(rent => {
@@ -80,10 +80,10 @@
                     label: rent.name,
                     resourceId: rent.part.index,
                     from: date(rent.startDate),
-                    to: date(rent.endDate),
+                    to: date(rent.endDate).add(1, 'days'),
                     enableDragging: false,
                     enableResize: false,
-                    classes: 'orange'
+                    classes: 'pink'
                 })
             });
 
@@ -99,20 +99,13 @@
         });
     }
 
-    function distinctPartsByPartIndex(rents: Rent[]): Seat[] {
-        const distinctParts: Seat[] = [];
-        const seenIds = new Set<string>();
-
-        rents.forEach(rent => {
-            if (!seenIds.has(rent.part.index)) {
-                seenIds.add(rent.part.index);
-                distinctParts.push(rent.part);
-            }
+    function getSeatsData() {
+        const starCountRef = ref(db, 'baby-seat');
+        onValue(starCountRef, (snapshot) => {
+            const seatData = snapshot.val();
+            $seats = Object.values(seatData);
         });
-
-        distinctParts.sort(sortSeatsByName);
-
-        return distinctParts;
+        
     }
 
     function sortSeatsByName( a: Seat, b: Seat ) {
@@ -235,7 +228,6 @@
         tableWidth: 250,
         ganttTableModules: [SvelteGanttTable],
         taskElementHook: (node, task) => {
-            let popup;
             function onHover(event) {
                 taskPopoverCoordinates = { x: event.clientX + 5, y: event.clientY +5 };
                 selectedTask = task;
@@ -261,6 +253,7 @@
 
     let gantt;
     onMount(() => {
+        getSeatsData();
         getDatabaseRentData();
     });
 
@@ -321,11 +314,11 @@
 
 	<FormRent on:saveRent={handleSaveItem} rentObject={pickedRent} />
 </Modal>
-<div class="container">
+<div class="container pl-4">
     <div class="flex flex-col gap-4 mt-8">
         <div class="flex gap-2 items-center">
             <label>Zeitraum: </label>
-            <Flatpickr flatpickr={myFlatpickr} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-2.5 w-52 h-12 cursor-pointer" options={optionsFlatpickr} bind:value={timeRange} on:close={setCalendarDate} name="date" />
+            <Flatpickr flatpickr={myFlatpickr} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-2.5 w-52 h-12 cursor-pointer" options={optionsFlatpickr} bind:value={timeRange} on:close={setCalendarDate} name="date" />
             <!-- <div>
                 <label for="from" class="block mb-2 text-sm font-medium text-gray-900">Von</label>
                 <input type="date" id="from" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="Von" bind:value={fromDate} on:change={setCalendarDate} />
