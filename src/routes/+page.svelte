@@ -24,7 +24,7 @@
       uid: user?.uid
      }
     });
-    goto('/rents');
+    goto('/calendar');
    })
    .catch((error) => {
     return error;

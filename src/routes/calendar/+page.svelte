@@ -254,7 +254,9 @@
     let gantt;
     onMount(() => {
         getSeatsData();
-        getDatabaseRentData();
+        setTimeout(() => {
+            getDatabaseRentData();
+        }, 100)
     });
 
     function setCalendarDate(event) {
@@ -336,23 +338,9 @@
 </div>
 
 <style>
-    #example-gantt-events {
-        flex-grow: 1;
-        overflow: auto;
-        max-height: 800px;
-    }
-
     .container {
         display: flex;
         overflow: auto;
         flex: 1;
-    }
-
-    #example-gantt-events :global(.sg-hover) {
-        background-color: #00000008;
-    }
-
-    #example-gantt-events :global(.sg-hover .sg-table-body-cell) {
-        background-color: #00000008;
     }
 </style>
