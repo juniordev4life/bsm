@@ -1,5 +1,5 @@
 <script lang="ts">
-    export let value;
+    export let value: Date | null;
     $: {
         parseDate(value);
     }
@@ -10,7 +10,7 @@
         emitDate(dateStr, timeStr);
     }
 
-    function parseDate(dateObj) {
+    function parseDate(dateObj: Date | null) {
         if(dateObj) {
             const [date, time] = new Date(dateObj).toLocaleString("sv-SE").split(' ');
             dateStr = date;
@@ -18,7 +18,7 @@
         }
     }
 
-    function emitDate(date, time) {
+    function emitDate(date: string, time: string) {
         if(date && time) {
             value = new Date(`${date} ${time}`);
         } else {

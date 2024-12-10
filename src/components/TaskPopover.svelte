@@ -1,6 +1,6 @@
 <script lang="ts">
   import {showToDate} from '../utils';
-  export let task: { label: string; from: Moment; to: Moment };
+  export let task: { label: string; from: any; to: any };
   export let coordinates: { x: number; y: number };
   export let isVisible: boolean;
 </script>

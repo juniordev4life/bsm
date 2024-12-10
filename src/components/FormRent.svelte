@@ -37,7 +37,7 @@
 {#if hasSeats}
 <div class="flex gap-4 flex-col mt-3">
 	<div class="flex gap-1 flex-col">
-		<label>Sitz</label>
+  <label for="seat-select">Sitz</label>
 	{#if rentObject.name === ''}
 		<select  bind:value={seatSelected} aria-label="Sitz" on:change={() => (rentObject.part = seatSelected)}>
 			{#each $seats as seat}
@@ -48,36 +48,36 @@
 		<input bind:value={rentObject.part.name} type="text" readonly disabled aria-label="Sitz" />
 	{/if}
 	</div>
-	<div class="flex gap-2">
-		<div class="flex gap-1 flex-col">
-			<label>Von</label>
-			<input  bind:value={rentObject.startDate} type="date" aria-label="Von" />
-		</div>
-		<div class="flex gap-1 flex-col">
-			<label>Bis</label>
-			<input  bind:value={rentObject.endDate} type="date" aria-label="Bis" />
-		</div>
-	</div>
-	<div class="flex gap-1 flex-col">
-		<label>Name</label>
-		<input  bind:value={rentObject.name} type="text" aria-label="Name" />
-	</div>
-	<div class="flex gap-1 flex-col">
-		<label>E-Mail</label>
-		<input  bind:value={rentObject.email} type="text" aria-label="E-Mail" />
-	</div>
-	<div class="flex gap-1 flex-col">
-		<label>Telefon</label>
-		<input  bind:value={rentObject.phone} type="text" aria-label="Telefon" />
-	</div>
-	<div class="flex gap-1 flex-row">
-		<label>Mit Versand</label>
-		<input  bind:value={rentObject.shipping} type="checkbox" aria-label="Mit Versand" />
-	</div>
-	<div class="flex gap-1 flex-col">
-		<label>Notiz</label>
-		<input  bind:value={rentObject.note} type="text" aria-label="Notiz" />
-	</div>
+ <div class="flex gap-2">
+     <div class="flex gap-1 flex-col">
+         <label for="start-date">Von</label>
+         <input id="start-date" bind:value={rentObject.startDate} type="date" aria-label="Von" />
+     </div>
+     <div class="flex gap-1 flex-col">
+         <label for="end-date">Bis</label>
+         <input id="end-date" bind:value={rentObject.endDate} type="date" aria-label="Bis" />
+     </div>
+ </div>
+ <div class="flex gap-1 flex-col">
+     <label for="name">Name</label>
+     <input id="name" bind:value={rentObject.name} type="text" aria-label="Name" />
+ </div>
+ <div class="flex gap-1 flex-col">
+     <label for="email">E-Mail</label>
+     <input id="email" bind:value={rentObject.email} type="text" aria-label="E-Mail" />
+ </div>
+ <div class="flex gap-1 flex-col">
+     <label for="phone">Telefon</label>
+     <input id="phone" bind:value={rentObject.phone} type="text" aria-label="Telefon" />
+ </div>
+ <div class="flex gap-1 flex-row">
+     <label for="shipping">Mit Versand</label>
+     <input id="shipping" bind:value={rentObject.shipping} bind:checked={rentObject.shipping} type="checkbox" aria-label="Mit Versand" />
+ </div>
+ <div class="flex gap-1 flex-col">
+     <label for="note">Notiz</label>
+     <input id="note" bind:value={rentObject.note} type="text" aria-label="Notiz" />
+ </div>
 	<div class="mt-5 flex justify-center gap-x-8 text-center">
 		<button class="p-2 pl-5 pr-5 bg-blue-500 text-gray-100 text-lg rounded-lg focus:border-4 border-blue-300" on:click={saveItem}>
 			Speichern

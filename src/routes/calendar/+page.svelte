@@ -2,7 +2,7 @@
     import { SvelteGantt, SvelteGanttTable, MomentSvelteGanttDateAdapter } from 'svelte-gantt';
     import { onMount } from 'svelte';
     import TaskPopover from '../../components/TaskPopover.svelte';
-    import { time, date } from '../../utils'
+    import { date } from '../../utils'
     import { db } from '../../lib/firebase.client';
     import { ref, set, onValue} from "firebase/database";
     import { rents, type Rent } from '$lib/rents';
@@ -18,12 +18,12 @@
 
     const myFlatpickr = flatpickr.localize(German);
 
-    let rows = [];
-    let tasks = [];
+    let rows: any[] = [];
+    let tasks: any[] = [];
 
     let taskPopoverCoordinates = { x: 0, y: 0 };
     let isTaskPopoverVisible = false;
-    let selectedTask = null;
+    let selectedTask: any = null;
 
     let showModal = false;
     let modalTitle = '';
@@ -91,7 +91,7 @@
 
             // gantt.api.tasks.on.move((task) => console.log('Listener: task move', task));
             //gantt.api.tasks.on.switchRow((task, row, previousRow) => console.log('Listener: task switched row', task));
-            gantt.api.tasks.on.select((task) => handleEditItem(task));
+            gantt.api.tasks.on.select((task: any) => handleEditItem(task));
             //gantt.api.tasks.on.moveEnd((task) => console.log('Listener: task move end', task));
             // gantt.api.tasks.on.change(([data]) => console.log('Listener: task change', data));
             // gantt.api.tasks.on.changed((task) => console.log('Listener: task changed', task));
@@ -124,85 +124,6 @@
     let currentStart = date(fromDate);
     let currentEnd = date(toDate);
 
-    /*
-    export const data = {
-        rows: [{
-            id: 1,
-            label: "Accounting",
-        }, {
-            id: 2,
-            label: "Business Development",
-        }, {
-            id: 3,
-            label: "Ida Flewan"
-        }, {
-            id: 4,
-            label: "Lauréna Shrigley"
-        }, {
-            id: 5,
-            label: "Ange Kembry"
-        }],
-        tasks: [{
-            id: 3,
-            resourceId: 1,
-            label: "PET-CT",
-            from: date('2024-05-15'),
-            to: date('2024-05-20'),
-            classes: "orange"
-        }, {
-            id: 4,
-            resourceId: 1,
-            label: "Auditing",
-            from: date('2024-05-16'),
-            to: date('2024-05-19'),
-            classes: "orange"
-        }, {
-            id: 5,
-            resourceId: 2,
-            label: "Security Clearance",
-            from: time("15:15"),
-            to: time("16:00"),
-            classes: "green"
-        }, {
-            id: 6,
-            resourceId: 2,
-            label: "Policy Analysis",
-            from: time("14:00"),
-            to: time("17:00"),
-            classes: "blue"
-        }, {
-            id: 7,
-            resourceId: 2,
-            label: "Xbox 360",
-            from: time("13:00"),
-            to: time("14:00"),
-            classes: "blue"
-        }, {
-            id: 8,
-            resourceId: 3,
-            label: "GNU/Linux",
-            from: time("14:00"),
-            to: time("15:30"),
-            classes: "blue"
-        }, {
-            id: 9,
-            resourceId: 4,
-            label: "Electronic Trading",
-            from: time("15:00"),
-            to: time("17:00"),
-            classes: "green"
-        }, {
-            id: 10,
-            resourceId: 5,
-            label: "Alternative Medicine",
-            from: time("14:30"),
-            to: time("15:30"),
-            classes: "orange"
-        }],
-        dependencies: []
-    }
-    */
-
     let data = {
         rows: rows,
         tasks: tasks,
@@ -227,8 +148,8 @@
         tableHeaders: [{ title: 'Seats', property: 'label', width: 140}],
         tableWidth: 250,
         ganttTableModules: [SvelteGanttTable],
-        taskElementHook: (node, task) => {
-            function onHover(event) {
+        taskElementHook: (node: any, task: any) => {
+            function onHover(event: any) {
                 taskPopoverCoordinates = { x: event.clientX + 5, y: event.clientY +5 };
                 selectedTask = task;
                 isTaskPopoverVisible = true;
@@ -251,7 +172,7 @@
         // taskContent: (task) => `${task.label} ${task.from.format('HH:mm')}`
     }
 
-    let gantt;
+    let gantt: any;
     onMount(() => {
         getSeatsData();
         setTimeout(() => {
@@ -259,7 +180,7 @@
         }, 100)
     });
 
-    function setCalendarDate(event) {
+    function setCalendarDate(event: any) {
         const [ selectedDates, dateStr ] = event.detail;
         options.from = date(selectedDates[0]);
         options.to = date(selectedDates[1]).add(1, 'days');
@@ -298,8 +219,8 @@
         });
     }
 
-    function handleEditItem(task) {
-        const myRent = $rents.find((rent) => rent.index === task[0].model.id);
+    function handleEditItem(task: any) {
+        const myRent = $rents.find((rent) => rent.index === task[0].model.id) ?? pickedRent;
         pickedRent = myRent;
         modalTitle = 'Miete bearbeiten'
         showModal = true;
@@ -319,7 +240,7 @@
 <div class="container pl-4">
     <div class="flex flex-col gap-4 mt-8">
         <div class="flex gap-2 items-center">
-            <label>Zeitraum: </label>
+            <label for="time-range">Zeitraum: </label>
             <Flatpickr flatpickr={myFlatpickr} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-2.5 w-52 h-12 cursor-pointer" options={optionsFlatpickr} bind:value={timeRange} on:close={setCalendarDate} name="date" />
             <!-- <div>
                 <label for="from" class="block mb-2 text-sm font-medium text-gray-900">Von</label>

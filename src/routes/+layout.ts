@@ -1,15 +1,15 @@
 /** @type {import('./$types').LayoutLoad} */
 
-import { initializeFirebase, auth, db } from '../lib/firebase.client';
-import { browser } from '$app/environment';
-import { onAuthStateChanged } from 'firebase/auth';
+import { initializeFirebase, auth, db } from "../lib/firebase.client";
+import { browser } from "$app/environment";
+import { onAuthStateChanged } from "firebase/auth";
 
 export async function load({ url }) {
   if (browser) {
     try {
       initializeFirebase();
     } catch (ex) {
-    console.error(ex);
+      console.error(ex);
     }
   }
 
@@ -19,8 +19,8 @@ export async function load({ url }) {
     });
   }
 
- return {
-  getAuthUser: getAuthUser,
-  url: url.pathname
- };
+  return {
+    getAuthUser: getAuthUser,
+    url: url.pathname,
+  };
 }
