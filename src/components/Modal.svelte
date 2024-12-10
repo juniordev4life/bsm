@@ -1,9 +1,9 @@
-<script>
-	export let showModal; // boolean
+<script lang="ts">
+    export let showModal: boolean; // Corrected type annotation
 
-	let dialog; // HTMLDialogElement
+    let dialog: HTMLDialogElement; // HTMLDialogElement
 
-	$: if (dialog && showModal) dialog.showModal();
+    $: if (dialog && showModal) dialog.showModal();
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events a11y-no-noninteractive-element-interactions -->

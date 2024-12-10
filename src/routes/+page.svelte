@@ -41,7 +41,7 @@
             <h3 class="text-3xl font-extrabold text-[#383084]">Log in</h3>
           </div>
           <div>
-            <label class="text-sm mb-2 block">Email</label>
+            <label for="email" class="text-sm mb-2 block">Email</label>
             <div class="relative flex items-center">
               <input bind:value={email} name="email" type="text" required class="w-full text-sm border border-gray-300 px-4 py-3 rounded-md outline-[#333]" placeholder="Email" />
               <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" class="w-[18px] h-[18px] absolute right-4" viewBox="0 0 24 24">
@@ -51,7 +51,7 @@
             </div>
           </div>
           <div>
-            <label class="text-sm mb-2 block">Password</label>
+            <label for="password" class="text-sm mb-2 block">Password</label>
             <div class="relative flex items-center">
               <input bind:value={password} name="password" type="password" required class="w-full text-sm border border-gray-300 px-4 py-3 rounded-md outline-[#333]" placeholder="Enter password" />
               <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" class="w-[18px] h-[18px] absolute right-4 cursor-pointer" viewBox="0 0 128 128">

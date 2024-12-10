@@ -1,13 +1,15 @@
-import moment from 'moment';
+import moment from "moment";
 
 export function time(input: string) {
-    return moment(input, 'HH:mm');
+  return moment(input, "HH:mm");
 }
 
 export function date(input: string) {
-    return moment(input, 'YYYY-MM-DD');
+  return moment(input, "YYYY-MM-DD");
 }
 
 export function showToDate(input: string) {
-    return moment(input, 'YYYY-MM-DD').subtract(1, 'days').format('dddd DD.MM.YYYY');
+  return moment(input, "YYYY-MM-DD")
+    .subtract(1, "days")
+    .format("dddd DD.MM.YYYY");
 }
